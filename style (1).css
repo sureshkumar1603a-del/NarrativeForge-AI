@@ -1,0 +1,303 @@
+:root {
+    /* Color Palette */
+    --bg-dark: #0f0c29;
+    --bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f8f9fa;
+    --text-muted: #adb5bd;
+    --accent: #00f2fe;
+    --accent-hover: #4facfe;
+    --error: #ff4b4b;
+    
+    /* Typography */
+    --font-ui: 'Inter', sans-serif;
+    --font-reading: 'Lora', serif;
+    
+    /* Transitions & Shadows */
+    --transition: all 0.3s ease;
+    --glow: 0 0 20px rgba(79, 172, 254, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-ui);
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* Base App Container */
+#app {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    position: relative;
+}
+
+/* Glassmorphism Classes */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: var(--transition);
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+    opacity: 0;
+}
+
+.active {
+    display: block;
+    animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Setup Screen */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: -webkit-linear-gradient(45deg, var(--accent), var(--accent-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: var(--text-muted);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+}
+
+.input-group input, 
+.input-group select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.input-group input:focus, 
+.input-group select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: var(--glow);
+}
+
+.input-group select option {
+    background: var(--bg-dark);
+    color: var(--text-main);
+}
+
+.input-group small {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Button */
+button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(45deg, var(--accent), var(--accent-hover));
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glow);
+}
+
+button[type="submit"]:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.loader {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.error {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background: rgba(255, 75, 75, 0.1);
+    border-left: 4px solid var(--error);
+    border-radius: 4px;
+    color: var(--error);
+    font-size: 0.9rem;
+}
+
+/* Reading Screen */
+#reading-screen {
+    background: var(--bg-dark);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 2rem;
+    animation: fadeScreenIn 0.8s ease forwards;
+}
+
+@keyframes fadeScreenIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.reading-nav {
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-ui);
+    font-weight: 600;
+}
+
+.icon-btn:hover {
+    color: var(--accent);
+    background: rgba(255,255,255,0.05);
+}
+
+.controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.story-content {
+    max-width: 700px;
+    margin: 0 auto;
+    padding-bottom: 5rem;
+}
+
+#story-title {
+    font-family: var(--font-reading);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(79, 172, 254, 0.2);
+}
+
+#story-body {
+    font-family: var(--font-reading);
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #e9ecef;
+}
+
+#story-body p {
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: revealText 0.8s ease forwards;
+}
+
+@keyframes revealText {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Staggered animation for paragraphs */
+#story-body p:nth-child(1) { animation-delay: 0.2s; }
+#story-body p:nth-child(2) { animation-delay: 0.4s; }
+#story-body p:nth-child(3) { animation-delay: 0.6s; }
+#story-body p:nth-child(4) { animation-delay: 0.8s; }
+#story-body p:nth-child(5) { animation-delay: 1.0s; }
+
+/* Markdown specific styles */
+#story-body h1, #story-body h2, #story-body h3 {
+    font-family: var(--font-ui);
+    margin: 2rem 0 1rem 0;
+    color: var(--accent);
+}
+
+#story-body em {
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .glass-card { padding: 1.5rem; }
+    header h1 { font-size: 2rem; }
+    #story-title { font-size: 2rem; }
+    #story-body { font-size: 1.1rem; }
+}
